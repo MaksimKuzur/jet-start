@@ -61,7 +61,13 @@ module.exports = function (env) {
 			})
 		],
 		devServer: {
-			stats: "errors-only"
+			stats: "errors-only",
+			proxy: {
+				"/server": {
+					target: 'http://localhost:8096',
+					pathRewrite: {"^/server" : ""}
+				}
+			}
 		}
 	};
 
