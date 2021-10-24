@@ -85,7 +85,7 @@ export default class PopupAddEditActivities extends JetView {
 								value: this.getActivitiesAddSaveButton().value,
 								width: 100,
 								align: "right",
-								click: () => {this.showFormAddEditActivities()}
+								click: () => { this.showFormAddEditActivities(); }
 							},
 							{
 								view: "button",
@@ -93,7 +93,7 @@ export default class PopupAddEditActivities extends JetView {
 								value: "Cancel",
 								width: 100,
 								align: "right",
-								click: () => {this.hideFormAddEditActivities()}
+								click: () => { this.hideFormAddEditActivities(); }
 							}
 						]
 					}
@@ -115,7 +115,7 @@ export default class PopupAddEditActivities extends JetView {
 	getHeader() {}
 
 	getActivitiesAddSaveButton() {}
-	
+
 	getFormActivitiesValues() {
 		return this.$getFormActivities().getValues();
 	}
@@ -144,7 +144,7 @@ export default class PopupAddEditActivities extends JetView {
 
 	showWindow(activitiesSelectedItem) {
 		const formActivities = this.getRoot();
-		if(activitiesSelectedItem) {
+		if (activitiesSelectedItem) {
 			const activitiesSelectedItemId = activitiesSelectedItem.id;
 			const activitiesSelectedItemDetails = activitiesSelectedItem.Details;
 			const activitiesSelectedItemTypeID = activitiesSelectedItem.TypeID;

@@ -83,8 +83,8 @@ export default class DataView extends JetView {
 						}
 					],
 					onClick: {
-						on_click_edit: (e, row) => {this.showFormEditActivities(e, row)},
-						on_click_delete: (e, id) => {this.deleteItemActivities(e, id)}
+						on_click_edit: (e, row) => { this.showFormEditActivities(e, row); },
+						on_click_delete: (e, id) => { this.deleteItemActivities(e, id); }
 					}
 				}
 			]
@@ -116,7 +116,7 @@ export default class DataView extends JetView {
 
 	ready() {
 		this.on(this.app, "activitiesItemAddEdit", (formActivitiesValues) => {
-			if(formActivitiesValues.id) {
+			if (formActivitiesValues.id) {
 				const activitiesDetails = formActivitiesValues.Details;
 				const activitiesTypeID = formActivitiesValues.TypeID;
 				const activitiesState = formActivitiesValues.State;
@@ -135,7 +135,8 @@ export default class DataView extends JetView {
 				};
 				const activitiesSelectedItemId = this.$getDataActivities().getSelectedId();
 				activitiesCollection.updateItem(activitiesSelectedItemId, (updatedActivitiesItemValues));
-			} else {
+			}
+			else {
 				const activitiesDetails = formActivitiesValues.Details;
 				const activitiesTypeID = formActivitiesValues.TypeID;
 				const activitiesState = formActivitiesValues.State;

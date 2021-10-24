@@ -26,7 +26,7 @@ export default class StartView extends JetView {
 						`
 					},
 					on: {
-						onAfterSelect: (row) => {this.setValuesToFormContacts(row)}
+						onAfterSelect: (row) => { this.setValuesToFormContacts(row); }
 					}
 				},
 				{
@@ -44,7 +44,7 @@ export default class StartView extends JetView {
 													view: "label",
 													label: "FirstName",
 													name: "FirstName",
-													autowidth: true,
+													autowidth: true
 												},
 												{
 													view: "label",
@@ -74,10 +74,10 @@ export default class StartView extends JetView {
 														{
 															view: "label",
 															label: "StatusID",
-															name: "StatusID",
+															name: "StatusID"
 														},
 														{}
-		
+
 													]
 												},
 												{
@@ -85,22 +85,22 @@ export default class StartView extends JetView {
 														{
 															view: "label",
 															template: "<span class='fa fa-envelope'>#Email#</span>",
-															name: "Email",
+															name: "Email"
 														},
 														{
 															view: "label",
 															template: "<span class='fa fa-skype'>#Skype#</span>",
-															name: "Skype",
+															name: "Skype"
 														},
 														{
 															view: "label",
 															template: "<span class='fa fa-tag'>#Job#</span>",
-															name: "Job",
+															name: "Job"
 														},
 														{
 															view: "label",
 															template: "<span class='fa fa-briefcase'>#Company#</span>",
-															name: "Company",
+															name: "Company"
 														},
 														{}
 													]
@@ -110,19 +110,19 @@ export default class StartView extends JetView {
 														{
 															view: "label",
 															template: "<span class='fa fa-calendar'>#Birthday#</span>",
-															name: "Birthday",
+															name: "Birthday"
 														},
 														{
 															view: "label",
 															template: "<span class='ico-location'>location</span>",
-															name: "location",
+															name: "location"
 														},
 														{}
 													]
 												}
 											]
 										}
-		
+
 									]
 								},
 								{
@@ -150,7 +150,7 @@ export default class StartView extends JetView {
 									]
 								}
 							]
-						},
+						}
 					]
 				}
 			]

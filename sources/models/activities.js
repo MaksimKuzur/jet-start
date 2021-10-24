@@ -3,12 +3,10 @@ const activitiesCollection = new webix.DataCollection({
 	save: "rest->/server/api/v1/activities/",
 	scheme: {
 		$init: (obj) => {
-			if (obj.DueDate)
-				obj.DueDateObject = webix.i18n.parseFormatDate(obj.DueDate);
+			if (obj.DueDate) obj.DueDateObject = webix.i18n.parseFormatDate(obj.DueDate);
 		},
 		$update: (obj) => {
-			if (obj.DueDate)
-				obj.DueDateObject = webix.i18n.parseFormatDate(obj.DueDate);
+			if (obj.DueDate) obj.DueDateObject = webix.i18n.parseFormatDate(obj.DueDate);
 		}
 	}
 });
