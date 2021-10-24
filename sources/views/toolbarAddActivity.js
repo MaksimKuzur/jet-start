@@ -1,6 +1,6 @@
 import {JetView} from "webix-jet";
 
-import PopupAdd from "./windows/popupAdd";
+import PopupAddActivities from "./windows/popupAddActivities";
 
 export default class ToolbarAddActivity extends JetView {
 	config() {
@@ -14,13 +14,13 @@ export default class ToolbarAddActivity extends JetView {
 					width: 120,
 					value: "Add activity",
 					css: "webix_primary",
-					click: () => this._jetPopupAdd.showWindow()
+					click: () => this.popupAddActivities.showWindow()
 				}
 			]
 		};
 	}
 
 	init() {
-		this._jetPopupAdd = this.ui(PopupAdd);
+		this.popupAddActivities = this.ui(PopupAddActivities);
 	}
 }

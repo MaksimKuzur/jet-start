@@ -25,8 +25,9 @@ export default class TopView extends JetView {
 			template: "<span class='#icon#'></span> #value# ",
 			on: {
 				onAfterSelect: () => {
-					const menuSelectedItemId = this.$getTopMenu().getSelectedId();
-					const menuSelectedItem = this.$getTopMenu().getItem(menuSelectedItemId);
+					const topMenu = this.$getTopMenu();
+					const menuSelectedItemId = topMenu.getSelectedId();
+					const menuSelectedItem = topMenu.getItem(menuSelectedItemId);
 					this.$getTemplateHeader().setValues(menuSelectedItem);
 				}
 			},

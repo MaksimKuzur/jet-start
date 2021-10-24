@@ -4,8 +4,7 @@ import activitiesCollection from "../models/activities";
 import activitytypesCollection from "../models/activitytypes";
 import contactsCollection from "../models/contacts";
 import ToolbarAddActivity from "./toolbarAddActivity";
-import PopupAdd from "./windows/popupAdd";
-import PopupEdit from "./windows/popupEdit";
+import PopupEditActivities from "./windows/popupEditActivities";
 
 export default class DataView extends JetView {
 	config() {
@@ -39,17 +38,17 @@ export default class DataView extends JetView {
 							],
 							collection: activitytypesCollection,
 							width: 200,
-							sort: "string"
+							sort: "text"
 						},
 						{
-							id: "DueDate",
+							id: "DueDateObject",
 							format: webix.i18n.longDateFormatStr,
 							header: [
 								"Due date",
 								{content: "dateRangeFilter"}
 							],
 							width: 200,
-							sort: "string"
+							sort: "date"
 						},
 						{
 							id: "Details",
@@ -68,7 +67,7 @@ export default class DataView extends JetView {
 							],
 							collection: contactsCollection,
 							width: 200,
-							sort: "string"
+							sort: "text"
 						},
 						{
 							id: "edit",
@@ -84,33 +83,8 @@ export default class DataView extends JetView {
 						}
 					],
 					onClick: {
-						on_click_edit: (e, row) => {
-							const activitiesSelectedDetails = this.$getDataActivities().getItem(row).Details;
-							const activitiesSelectedTypeID = this.$getDataActivities().getItem(row).TypeID;
-							const activitiesSelectedState = this.$getDataActivities().getItem(row).State;
-							const activitiesSelectedContactID = this.$getDataActivities().getItem(row).ContactID;
-							const activitiesSelectedDueDate = this.$getDataActivities().getItem(row).DueDate;
-							const parseSelectedDueDate = webix.i18n.parseFormatDate(activitiesSelectedDueDate);
-							const activitiesSelectedDate = webix.Date.datePart(parseSelectedDueDate);
-							const activitiesSelectedTime = new Date(activitiesSelectedDueDate);
-							this.app.callEvent("activitiesItemEdit", [
-								activitiesSelectedDetails,
-								activitiesSelectedTypeID,
-								activitiesSelectedState,
-								activitiesSelectedContactID,
-								activitiesSelectedDate,
-								activitiesSelectedTime
-							]);
-							this._jetPopupEdit.showWindow();
-						},
-						on_click_delete: (e, id) => {
-							webix.confirm({
-								ok: "Yes",
-								cancel: "No",
-								text: "Deleting cannot be undone, are you sure?"
-							}).then(() => activitiesCollection.remove(id));
-							return false;
-						}
+						on_click_edit: (e, row) => {this.showFormEditActivities(e, row)},
+						on_click_delete: (e, id) => {this.deleteItemActivities(e, id)}
 					}
 				}
 			]
@@ -121,43 +95,65 @@ export default class DataView extends JetView {
 		return this.$$("dataActivities");
 	}
 
+	showFormEditActivities(e, row) {
+		const activitiesSelectedItem = this.$getDataActivities().getItem(row);
+		this.popupEditActivities.showWindow(activitiesSelectedItem);
+	}
+
+	deleteItemActivities(e, id) {
+		webix.confirm({
+			ok: "Yes",
+			cancel: "No",
+			text: "Deleting cannot be undone, are you sure?"
+		}).then(() => activitiesCollection.remove(id));
+		return false;
+	}
+
 	init() {
 		this.$getDataActivities().parse(activitiesCollection);
-		this._jetPopup = this.ui(PopupAdd);
-		this._jetPopupEdit = this.ui(PopupEdit);
+		this.popupEditActivities = this.ui(PopupEditActivities);
 	}
 
 	ready() {
-		this.on(this.app, "activitiesItemAdd", (
-			newActivitiesDetails,
-			newActivitiesTypeID,
-			newActivitiesState,
-			newActivitiesContactID,
-			newActivitiesDueDate
-			) => {
-			activitiesCollection.add({
-				Details: newActivitiesDetails,
-				TypeID: newActivitiesTypeID,
-				State: newActivitiesState,
-				ContactID: newActivitiesContactID,
-				DueDate: newActivitiesDueDate
-			});
-		});
-		this.on(this.app, "activitiesItemUpdate", (
-			newActivitiesDetails,
-			newActivitiesTypeID,
-			newActivitiesState,
-			newActivitiesContactID,
-			newActivitiesDueDate
-			) => {
-			const selectedActivitiesItem = this.$getDataActivities().getSelectedId();
-			activitiesCollection.updateItem(selectedActivitiesItem, {
-				Details: newActivitiesDetails,
-				TypeID: newActivitiesTypeID,
-				State: newActivitiesState,
-				ContactID: newActivitiesContactID,
-				DueDate: newActivitiesDueDate
-			});
+		this.on(this.app, "activitiesItemAddEdit", (formActivitiesValues) => {
+			if(formActivitiesValues.id) {
+				const activitiesDetails = formActivitiesValues.Details;
+				const activitiesTypeID = formActivitiesValues.TypeID;
+				const activitiesState = formActivitiesValues.State;
+				const activitiesContactID = formActivitiesValues.ContactID;
+				const formatDate = webix.Date.dateToStr("%Y-%m-%d");
+				const formatTime = webix.Date.dateToStr("%H:%i");
+				const activitiesDate = formatDate(formActivitiesValues.date);
+				const activitiesTime = formatTime(formActivitiesValues.time);
+				const activitiesDueDate = `${activitiesDate} ${activitiesTime}`;
+				const updatedActivitiesItemValues = {
+					Details: activitiesDetails,
+					TypeID: activitiesTypeID,
+					State: activitiesState,
+					ContactID: activitiesContactID,
+					DueDate: activitiesDueDate
+				};
+				const activitiesSelectedItemId = this.$getDataActivities().getSelectedId();
+				activitiesCollection.updateItem(activitiesSelectedItemId, (updatedActivitiesItemValues));
+			} else {
+				const activitiesDetails = formActivitiesValues.Details;
+				const activitiesTypeID = formActivitiesValues.TypeID;
+				const activitiesState = formActivitiesValues.State;
+				const activitiesContactID = formActivitiesValues.ContactID;
+				const formatDate = webix.Date.dateToStr("%Y-%m-%d");
+				const formatTime = webix.Date.dateToStr("%H:%i");
+				const activitiesDate = formatDate(formActivitiesValues.date);
+				const activitiesTime = formatTime(formActivitiesValues.time);
+				const activitiesDueDate = `${activitiesDate} ${activitiesTime}`;
+				const newActivitiesItemValues = {
+					Details: activitiesDetails,
+					TypeID: activitiesTypeID,
+					State: activitiesState,
+					ContactID: activitiesContactID,
+					DueDate: activitiesDueDate
+				};
+				activitiesCollection.add(newActivitiesItemValues);
+			}
 		});
 	}
 }

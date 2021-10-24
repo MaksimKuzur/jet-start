@@ -26,11 +26,12 @@
 	border-bottom-color: black !important;
 	text-align: center;
 }
+.webix_view.webix_form {
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+}
 .webix_el_datepicker .webix_inp_static, .webix_el_combo input, .webix_el_textarea textarea {
 	border-color: black;
-}
-.toolbar_info_contact {
-	border-top: 1px solid black !important;
 }
 .datatable_activities {
 	border-top: 1px solid black;
@@ -128,7 +129,6 @@
 	border-top: 1px solid #000000;
 }
 .layout_info_contact{
-	border-top: 1px solid #000000;
 	margin-left: 1px !important;
 }
 .template_firstLast_name {
