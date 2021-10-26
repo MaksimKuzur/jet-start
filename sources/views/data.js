@@ -13,7 +13,7 @@ export default class DataView extends JetView {
 				ToolbarAddActivity,
 				{
 					view: "datatable",
-					id: "dataActivities",
+					localId: "dataActivities",
 					css: "datatable_activities",
 					editable: true,
 					scrollX: false,
@@ -122,10 +122,9 @@ export default class DataView extends JetView {
 		const activitiesTime = this.formatTime(formActivitiesValues.time);
 		formActivitiesValues.DueDate = `${activitiesDate} ${activitiesTime}`;
 		if (formActivitiesValues.id) {
-			const activitiesSelectedItemId = this.$getDataActivities().getSelectedId();
 			activitiesCollection.updateItem(
-				activitiesSelectedItemId,
-				(formActivitiesValues)
+				formActivitiesValues.id,
+				formActivitiesValues
 			);
 		}
 		else {

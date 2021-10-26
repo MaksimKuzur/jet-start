@@ -53,7 +53,31 @@ export default class StartView extends JetView {
 													name: "LastName",
 													autowidth: true
 												},
-												{}
+												{},
+												{
+													css: "toolbar_info_contact",
+													rows: [
+														{
+															cols: [
+																{
+																	view: "button",
+																	type: "icon",
+																	label: "Delete",
+																	icon: "fa fa-trash-o",
+																	width: 100
+																},
+																{
+																	view: "button",
+																	type: "icon",
+																	label: "Edit",
+																	icon: "fa fa-edit",
+																	width: 100
+																}
+															]
+														},
+														{}
+													]
+												}
 											]
 										},
 										{
@@ -122,31 +146,6 @@ export default class StartView extends JetView {
 												}
 											]
 										}
-
-									]
-								},
-								{
-									css: "toolbar_info_contact",
-									rows: [
-										{
-											cols: [
-												{
-													view: "button",
-													type: "icon",
-													label: "Delete",
-													icon: "fa fa-trash-o",
-													width: 100
-												},
-												{
-													view: "button",
-													type: "icon",
-													label: "Edit",
-													icon: "fa fa-edit",
-													width: 100
-												}
-											]
-										},
-										{}
 									]
 								}
 							]
@@ -168,7 +167,7 @@ export default class StartView extends JetView {
 	setValuesToFormContacts(row) {
 		const listContactItem = this.$getListContacts().getItem(row);
 		const status = statusesCollection.getItem(listContactItem.StatusID);
-		listContactItem.status = status.Value;
+		listContactItem.status = status ? status.Value : "";
 		this.$getFormForContactInfo().setValues(listContactItem);
 		this.$getLabelFirstName().resize();
 	}

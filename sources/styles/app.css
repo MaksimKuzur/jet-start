@@ -133,6 +133,7 @@
 	height: 35px;
 }
 .user-contacts__details {
+	text-align: left;
 	display: table-cell;
 }
 .user-contacts {
@@ -148,17 +149,19 @@
 	font-size: 32px;
 }
 .list_item_container,
-.div_contact_info,
 .user-contacts__fullname,
 .user-contacts__company {
+	text-align: left;
 	padding: 0px;
 }
 .list_item_container {
 	background: rgb(253, 254, 255);
 	border-bottom: 1px solid #000000;
 }
-.div_contact_info {
+.user-contacts__photo {
+	text-align: left;
 	width: 40px;
+	display: table-cell;
 }
 .user-contacts__fullname,
 .user-contacts__company {
