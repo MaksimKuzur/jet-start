@@ -10,8 +10,6 @@ export default class PopupAddActivities extends PopupAddEditActivities {
 	}
 
 	getActivitiesAddSaveButton() {
-		return {
-			value: "Add"
-		};
+		return "Add";
 	}
 }

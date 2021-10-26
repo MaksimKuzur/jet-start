@@ -23,7 +23,6 @@ export default class SettingsView extends JetView {
 							value: "Russian"
 						}
 					]
-
 				},
 				{}
 			]

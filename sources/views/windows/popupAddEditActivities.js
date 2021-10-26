@@ -52,7 +52,6 @@ export default class PopupAddEditActivities extends JetView {
 								label: "Date",
 								name: "date",
 								labelWidth: 80,
-								timepicker: true,
 								format: webix.i18n.longDateFormatStr,
 								invalidMessage: "must be filled in"
 							},
@@ -82,10 +81,10 @@ export default class PopupAddEditActivities extends JetView {
 							{
 								view: "button",
 								type: "form",
-								value: this.getActivitiesAddSaveButton().value,
+								value: this.getActivitiesAddSaveButton(),
 								width: 100,
 								align: "right",
-								click: () => { this.showFormAddEditActivities(); }
+								click: () => this.saveChanges()
 							},
 							{
 								view: "button",
@@ -93,7 +92,7 @@ export default class PopupAddEditActivities extends JetView {
 								value: "Cancel",
 								width: 100,
 								align: "right",
-								click: () => { this.hideFormAddEditActivities(); }
+								click: () => this.hideFormAddEditActivities()
 							}
 						]
 					}
@@ -124,14 +123,15 @@ export default class PopupAddEditActivities extends JetView {
 		return this.$$("popupFormActivities");
 	}
 
-	showFormAddEditActivities() {
+	saveChanges() {
 		const formActivities = this.$getFormActivities();
 		if (formActivities.validate()) {
 			const formActivitiesValues = this.getFormActivitiesValues();
-			formActivities.clearValidation();
-			formActivities.clear();
-			this.$getPopupFormActivities().hide();
-			this.app.callEvent("activitiesItemAddEdit", [formActivitiesValues]);
+			this.hideFormAddEditActivities();
+			this.app.callEvent(
+				"activitiesItemAddEdit",
+				[formActivitiesValues]
+			);
 		}
 	}
 
@@ -143,28 +143,12 @@ export default class PopupAddEditActivities extends JetView {
 	}
 
 	showWindow(activitiesSelectedItem) {
-		const formActivities = this.getRoot();
 		if (activitiesSelectedItem) {
-			const activitiesSelectedItemId = activitiesSelectedItem.id;
-			const activitiesSelectedItemDetails = activitiesSelectedItem.Details;
-			const activitiesSelectedItemTypeID = activitiesSelectedItem.TypeID;
-			const activitiesSelectedItemState = activitiesSelectedItem.State;
-			const activitiesSelectedItemContactID = activitiesSelectedItem.ContactID;
-			const activitiesSelectedItemDueDateObject = activitiesSelectedItem.DueDateObject;
-			const activitiesSelectedItemDate = new Date(activitiesSelectedItemDueDateObject);
-			const activitiesSelectedItemTime = new Date(activitiesSelectedItemDueDateObject);
-			const activitiesSelectedItemValues = {
-				id: activitiesSelectedItemId,
-				Details: activitiesSelectedItemDetails,
-				TypeID: activitiesSelectedItemTypeID,
-				State: activitiesSelectedItemState,
-				ContactID: activitiesSelectedItemContactID,
-				date: activitiesSelectedItemDate,
-				time: activitiesSelectedItemTime
-			};
-			this.$getFormActivities().setValues(activitiesSelectedItemValues);
-			formActivities.show();
+			const activitieDueDate = activitiesSelectedItem.DueDateObject;
+			activitiesSelectedItem.date = activitieDueDate;
+			activitiesSelectedItem.time = activitieDueDate;
+			this.$getFormActivities().setValues(activitiesSelectedItem);
 		}
-		formActivities.show();
+		this.$getPopupFormActivities().show();
 	}
 }

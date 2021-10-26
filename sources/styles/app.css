@@ -5,7 +5,9 @@
 	transition: opacity 500ms;
 	opacity: 1;
 }
-.status_good, .status_error, .status_saving {
+.status_good,
+.status_error,
+.status_saving {
 	text-align: center;
 	margin-left: -12px;
 }
@@ -21,7 +23,8 @@
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 }
-.add_activity, .edit_activity {
+.add_activity,
+.edit_activity {
 	font-size: 24px;
 	border-bottom-color: black !important;
 	text-align: center;
@@ -30,7 +33,9 @@
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 }
-.webix_el_datepicker .webix_inp_static, .webix_el_combo input, .webix_el_textarea textarea {
+.webix_el_datepicker .webix_inp_static,
+.webix_el_combo input,
+.webix_el_textarea textarea {
 	border-color: black;
 }
 .datatable_activities {
@@ -41,10 +46,12 @@
 .webix_ss_header {
 	border-bottom: 1px solid black;
 }
-.webix_dtable .webix_ss_header .webix_hcolumn div.webix_last_row, .webix_dtable .webix_ss_header .webix_span.webix_last_row {
+.webix_dtable .webix_ss_header .webix_hcolumn div.webix_last_row,
+.webix_dtable .webix_ss_header .webix_span.webix_last_row {
 	border-bottom: 1px solid black;
 }
-.webix_dtable .webix_ss_header .webix_hcell, .webix_dtable .webix_ss_footer .webix_hcell {
+.webix_dtable .webix_ss_header .webix_hcell,
+.webix_dtable .webix_ss_footer .webix_hcell {
 	border-color: black;
 }
 .webix_cell {
@@ -54,11 +61,14 @@
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
 }
-.webix_dtable .webix_ss_body .webix_column > div, .webix_dtable .webix_ss_body .webix_table_cell {
+.webix_dtable .webix_ss_body .webix_column > div,
+.webix_dtable .webix_ss_body .webix_table_cell {
 	border-right-color: black;
 	border-left-color: black;
 }
-.webix_primary .webix_button, .webix_primary .webix_button .webix_img_btn, .webix_secondary .webix_button {
+.webix_primary .webix_button,
+.webix_primary .webix_button .webix_img_btn,
+.webix_secondary .webix_button {
 	border-width: 1px;
 	color: black;
 	background-color: #f4f5f9;
@@ -85,7 +95,7 @@
 	text-align: center;
 	border-bottom: 1px solid black;
 }
-.webix_header>div{
+.webix_header>div {
 	border-bottom: 1px solid black;
 }
 .app_layout.webix_layout_clean {
@@ -99,42 +109,48 @@
 	font-size: 20px;
 	vertical-align: middle;
 }
-.company{
+.company {
 	width: 100px;
 	text-align: center;
 }
-.webix_menu .webix_list_item, .webix_menu-x .webix_list_item, .webix_list .webix_list_item.webix_selected {
+.webix_menu .webix_list_item,
+.webix_menu-x .webix_list_item,
+.webix_list .webix_list_item.webix_selected {
 	border-bottom: 1px solid #000000;
 	padding-left: 12px;
 }
-.webix_list_item, .webix_list_item.webix_selected {
+.webix_list_item,
+.webix_list_item.webix_selected {
 	border-color: #000000;
 }
 .webix_menu {
 	border-top-width: 1px !important;
 	border: 1px solid #000000;
 }
-.table_contact_info {
+.user-contacts__item {
 	display: table;
 	width: 100%;
 	height: 35px;
 }
-.cell_contact_info {
+.user-contacts__details {
 	display: table-cell;
 }
-.list_contacts{
+.user-contacts {
 	border-radius: 0px;
 	border-left: 1px solid #000000;
 	border-right: 1px solid #000000;
 	border-top: 1px solid #000000;
 }
-.layout_info_contact{
+.layout_info_contact {
 	margin-left: 1px !important;
 }
 .template_firstLast_name {
 	font-size: 32px;
 }
-.list_item_container, .div_contact_info, .div_firstLastName, .div_company {
+.list_item_container,
+.div_contact_info,
+.user-contacts__fullname,
+.user-contacts__company {
 	padding: 0px;
 }
 .list_item_container {
@@ -144,12 +160,13 @@
 .div_contact_info {
 	width: 40px;
 }
-.div_firstLastName, .div_company {
+.user-contacts__fullname,
+.user-contacts__company {
 	font-family: "Source Sans Pro";
 	font-size: 16px;
 	line-height: 20px;
 }
-.div_company {
+.user-contacts__company {
 	font-size: 12px;
 }
 .photo {
