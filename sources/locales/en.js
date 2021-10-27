@@ -1,0 +1,21 @@
+export default {
+	App: "App",
+	Contacts: "Contacts",
+	Data: "Data",
+	Settings: "Settings",
+	"Add contact": "Add contact",
+	Add: "Add",
+	Name: "Name",
+	Status: "Status",
+	Country: "Country",
+	Update: "Update",
+	Countries: "Countries",
+	Statuses: "Statuses",
+	Icon: "Icon",
+	Language: "Language",
+	English: "English",
+	Russian: "Russian",
+	"Type here..": "Type here..",
+	status: "status",
+	country: "country"
+};
