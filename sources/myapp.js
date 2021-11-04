@@ -9,7 +9,7 @@ export default class MyApp extends JetApp {
 			version: VERSION,
 			router: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug: true,
-			start: "/top/start"
+			start: "/top/start/contactsInfo"
 		};
 
 		super({...defaults, ...config});
@@ -23,5 +23,5 @@ if (!BUILD_AS_MODULE) {
 }
 
 app.attachEvent("app:error:resolve", () => {
-	webix.delay(() => app.show("/top/start"));
+	webix.delay(() => app.show("/top/start/contactsInfo"));
 });
