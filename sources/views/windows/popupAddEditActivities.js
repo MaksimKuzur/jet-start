@@ -35,6 +35,7 @@ export default class PopupAddEditActivities extends JetView {
 					},
 					{
 						view: "combo",
+						localId: "comboContact",
 						label: "Contact",
 						name: "ContactID",
 						options: {
@@ -111,6 +112,10 @@ export default class PopupAddEditActivities extends JetView {
 		return this.$$("formActivities");
 	}
 
+	$getComboContact() {
+		return this.$$("comboContact");
+	}
+
 	getHeader() {}
 
 	getActivitiesAddSaveButton() {}
@@ -143,11 +148,18 @@ export default class PopupAddEditActivities extends JetView {
 	}
 
 	showWindow(activitiesSelectedItem) {
-		if (activitiesSelectedItem) {
+		const selectedContactId = this.getParam("id");
+		if ((selectedContactId && activitiesSelectedItem) || activitiesSelectedItem) {
 			const activitieDueDate = activitiesSelectedItem.DueDateObject;
 			activitiesSelectedItem.date = activitieDueDate;
 			activitiesSelectedItem.time = activitieDueDate;
 			this.$getFormActivities().setValues(activitiesSelectedItem);
+		}
+		else if (selectedContactId) {
+			this.$getFormActivities().setValues({
+				ContactID: selectedContactId
+			});
+			this.$getComboContact().disable();
 		}
 		this.$getPopupFormActivities().show();
 	}
